@@ -84,14 +84,19 @@ function app_run(): void {
     if ($path === '/setup/') abort(404);
     if ($path === '/superadmin/' || str_starts_with($path, '/superadmin/')) { superadmin_dispatch($path); return; }
     if ($path === '/admin/' || str_starts_with($path, '/admin/')) { admin_dispatch($path); return; }
+    if ($path === '/cron/') { cron_web(); return; }
+    $main = main_shop();
     if (preg_match('#^/s/([a-z0-9\-]+)(/.*)?$#', $path, $m)) {
         $s = shop_by_slug($m[1]);
         if (!$s) abort(404);
+        // The main-domain shop lives at the root: keep one canonical URL.
+        if ($main && (int) $main['id'] === (int) $s['id']) { $qs = $_SERVER['QUERY_STRING'] ?? ''; redirect(($m[2] ?? '/') . ($qs !== '' ? '?' . $qs : ''), 301); }
         store_dispatch($s, '/s/' . $m[1], $m[2] ?? '/');
         return;
     }
-    if ($path === '/cron/' ) { cron_web(); return; }
-    platform_dispatch($path);
+    // Main domain: the storefront the Super Admin activated, or a blank page.
+    if ($main) { store_dispatch($main, '', $path); return; }
+    platform_blank($path);
 }
 
 function app_exception_handler(Throwable $t): void {

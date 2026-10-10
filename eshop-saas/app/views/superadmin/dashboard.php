@@ -1,3 +1,28 @@
+<section class="card main-site" id="main-site">
+  <div class="main-site-head">
+    <div><h2 class="card-h">Main website <?= $main ? '<span class="badge badge-ok">Active</span>' : '<span class="badge badge-muted">Blank</span>' ?></h2>
+    <p class="muted small"><?php if ($main): ?>The root of this domain (<a href="/" target="_blank" rel="noopener">/</a>) shows <strong><?= e($main['name']) ?></strong> with the <strong><?= e(template_get($main['template_key'])['name']) ?></strong> template. Its shop admin is at <code>/admin/</code>.<?php else: ?>The root of this domain is a blank page. Choose a shop and a template to activate its storefront here, with clean URLs like <code>/products/</code>.<?php endif ?></p></div>
+    <?php if ($main): ?><div class="page-actions"><a class="btn btn-sm btn-ghost" href="/" target="_blank" rel="noopener"><?= icon('external', 14) ?> View</a><a class="btn btn-sm btn-ghost" href="/superadmin/shops/<?= (int) $main['id'] ?>/">Manage shop</a>
+      <form method="post" action="/superadmin/main-site/"><?= csrf_field() ?><button class="btn btn-sm btn-link" name="act" value="deactivate" data-confirm="Make the main website blank again? The shop and its data are not affected.">Deactivate</button></form></div><?php endif ?>
+  </div>
+  <?php if ($mainShops): ?>
+  <form method="post" action="/superadmin/main-site/" class="main-site-form" data-main-site>
+    <?= csrf_field() ?><input type="hidden" name="act" value="activate">
+    <div class="field"><label for="ms-shop">Shop (content, products, orders)</label>
+      <select id="ms-shop" name="shop_id" required><?php foreach ($mainShops as $s): ?><option value="<?= (int) $s['id'] ?>" data-tpl="<?= e($s['template_key']) ?>" data-slug="<?= e($s['slug']) ?>" <?= $main && (int) $main['id'] === (int) $s['id'] ? 'selected' : '' ?>><?= e($s['name']) ?> — <?= e($s['status']) ?></option><?php endforeach ?></select></div>
+    <fieldset><legend>Template (front end)</legend>
+      <div class="tpl-cards tpl-cards-sm"><?php foreach ($templates as $t): ?>
+        <label class="tpl-card"><input type="radio" name="template_key" value="<?= e($t['key']) ?>" <?= ($main['template_key'] ?? ($mainShops[0]['template_key'] ?? '')) === $t['key'] ? 'checked' : '' ?>>
+          <span class="tpl-thumb"><img src="/assets/img/templates/<?= e($t['key']) ?>.webp" alt="" width="320" height="200" loading="lazy"></span>
+          <span class="tpl-name"><?= e($t['name']) ?></span><span class="small muted"><?= e($t['style']) ?></span></label>
+      <?php endforeach ?></div>
+    </fieldset>
+    <div class="form-actions"><button class="btn" type="submit"><?= icon('bolt', 16) ?> <?= $main ? 'Update main website' : 'Activate on main website' ?></button>
+      <a class="btn btn-ghost btn-sm" href="#" data-ms-preview target="_blank" rel="noopener"><?= icon('eye', 14) ?> Preview selection</a>
+      <span class="small muted">Switching template only changes the presentation — no data changes.</span></div>
+  </form>
+  <?php else: ?><p><a class="btn btn-sm" href="/superadmin/shops/new/"><?= icon('plus', 16) ?> Create the first shop</a></p><?php endif ?>
+</section>
 <div class="kpis kpis-top">
   <a class="kpi card" href="/superadmin/shops/"><span>Total e-shops</span><strong><?= $stats['total'] ?></strong></a>
   <a class="kpi card kpi-ok" href="/superadmin/shops/?status=ACTIVE"><span>Active</span><strong><?= $stats['active'] ?></strong></a>

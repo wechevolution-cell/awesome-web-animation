@@ -264,3 +264,17 @@
     tick();
   });
 })();
+/* Main website: sync template choice with selected shop + preview link */
+(() => {
+  const f = document.querySelector('[data-main-site]'); if (!f) return;
+  const sel = f.querySelector('[name=shop_id]'), prev = f.querySelector('[data-ms-preview]');
+  const upd = (syncTpl) => {
+    const o = sel.selectedOptions[0];
+    if (syncTpl) { const r = f.querySelector(`input[name=template_key][value="${o.dataset.tpl}"]`); if (r) r.checked = true; }
+    const t = f.querySelector('input[name=template_key]:checked')?.value || o.dataset.tpl;
+    prev.href = `/s/${o.dataset.slug}/?preview_template=${t}`;
+  };
+  sel.addEventListener('change', () => upd(true));
+  f.querySelectorAll('input[name=template_key]').forEach((r) => r.addEventListener('change', () => upd(false)));
+  upd(false);
+})();

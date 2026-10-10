@@ -279,3 +279,8 @@ fieldset{border:0;padding:0;margin:0 0 .8rem;min-width:0}
 .auth-card{width:min(100%,420px);background:#fff;border:1px solid var(--line);border-radius:16px;padding:2rem;box-shadow:0 30px 80px -40px rgba(20,22,26,.35)}
 .auth-wide{width:min(100%,560px)}
 .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:700;color:var(--mu);margin:0 0 .5rem}
+.main-site{border:2px solid var(--pri)}
+.main-site-head{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:flex-start}
+.main-site-form{margin-top:.5rem}
+.tpl-cards-sm{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.5rem}
+.tpl-cards-sm .tpl-card{padding:.5rem}.tpl-cards-sm .tpl-name{font-size:.88rem}

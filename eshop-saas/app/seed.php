@@ -48,9 +48,7 @@ function seed_defaults(PDO $pdo): void {
         'platform_name' => 'ShopRent', 'expiry_warning_days' => '10,3,1', 'lock_grace_days' => '0',
         'expiring_window_days' => '10', 'force_https' => '0', 'canonical_host' => '', 'platform_hosts' => '',
         'notify_email' => '', 'mail_from' => '', 'ga4_id' => '', 'cron_token' => bin2hex(random_bytes(16)),
-        'hero_title' => 'Your own online store, ready in days — rented, not built.',
-        'hero_subtitle' => 'Pick one of 10 store designs, bring your domain and your products. We host it, keep it secure and fast, and you sell.',
-        'contact_email' => '', 'contact_phone' => '', 'company_name' => '', 'company_address' => '',
+        'company_name' => '', 'main_shop_id' => '0',
         'server_ip' => '', 'avif_enabled' => '0', 'default_locale' => 'el',
     ];
     $sd = $pdo->prepare('INSERT OR IGNORE INTO platform_settings(key, value) VALUES (?,?)');

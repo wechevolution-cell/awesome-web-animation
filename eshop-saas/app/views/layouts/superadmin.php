@@ -28,7 +28,7 @@ $unread = (int) val("SELECT COUNT(*) FROM notifications WHERE audience = 'super'
       <button class="act side-toggle" type="button" data-toggle="#side" aria-label="Menu"><?= icon('menu', 20) ?></button>
       <div class="top-title"><?= e($title ?? '') ?></div>
       <a class="btn btn-sm" href="/superadmin/shops/new/"><?= icon('plus', 16) ?> New shop</a>
-      <a class="act" href="/" target="_blank" rel="noopener" aria-label="Platform site"><?= icon('external', 18) ?></a>
+      <a class="act" href="/" target="_blank" rel="noopener" aria-label="Main website" title="Main website"><?= icon('external', 18) ?></a>
       <form method="post" action="/superadmin/logout/"><?= csrf_field() ?><button class="btn btn-sm btn-link" title="<?= e($u['email']) ?>"><?= icon('logout', 16) ?> <span class="hide-sm">Sign out</span></button></form>
     </header>
     <main id="main" class="content" tabindex="-1">

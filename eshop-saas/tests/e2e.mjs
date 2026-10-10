@@ -59,6 +59,37 @@ await shot(p, '03-superadmin-shop');
 const B = await createShop('Shop B', 'shop-b', '', 'Business', 'volt', 'owner@shop-b.test');
 ok(!!B.id, 'Provisioned shop B (no domain → /s/shop-b/)');
 
+/* 2b. Main website: blank until the Super Admin activates a storefront */
+step('Main website (blank → activated storefront)');
+const visitor = await newCtx();
+const pv = await visitor.newPage();
+let rb = await pv.goto(BASE + '/');
+ok(rb.status() === 200 && (await pv.locator('main').innerHTML()).trim() === '' && await pv.locator('a').count() === 0, 'Main domain is a blank page (no promotional content)');
+ok((await visitor.request.get(BASE + '/pricing/')).status() === 404, 'No marketing pages exist');
+ok((await (await visitor.request.get(BASE + '/robots.txt')).text()).includes('Disallow: /'), 'Blank main site is not indexed');
+await p.goto(BASE + '/superadmin/');
+ok(await p.locator('#main-site .badge:has-text("Blank")').count() === 1, 'Super Admin overview shows "Main website: Blank"');
+await p.selectOption('#ms-shop', String(B.id));
+await p.check('#main-site input[name=template_key][value=maison]');
+await shot(p, '02b-main-site-panel', false);
+await Promise.all([p.waitForNavigation(), p.click('#main-site button[type=submit]')]);
+ok(await p.locator('#main-site .badge:has-text("Active")').count() === 1, 'Activated Shop B on the main website with the Maison template');
+rb = await pv.goto(BASE + '/');
+ok(rb.status() === 200 && (await pv.title()).includes('Shop B') && await pv.locator('html.tpl-maison').count() === 1, 'Root now serves the Shop B storefront in the chosen template');
+ok((await visitor.request.get(BASE + '/products/')).status() === 200 && (await visitor.request.get(BASE + '/cart/')).status() === 200, 'Clean storefront URLs at the root (/products/, /cart/)');
+const canon = await visitor.request.get(BASE + '/s/shop-b/products/', { maxRedirects: 0 });
+ok(canon.status() === 301 && canon.headers().location === '/products/', '/s/shop-b/… 301 → root (one canonical URL)');
+ok((await visitor.request.get(BASE + '/admin/login/')).status() === 200 && (await visitor.request.get(BASE + '/superadmin/login/')).status() === 200, 'Admin panels stay on the same domain');
+await shot(pv, '02c-main-site-active', false);
+await p.goto(BASE + '/superadmin/');
+p.once('dialog', (d) => d.accept());
+await Promise.all([p.waitForNavigation(), p.click('#main-site button[value=deactivate]')]);
+ok((await pv.goto(BASE + '/')).status() === 200 && (await pv.locator('main').innerHTML()).trim() === '', 'Deactivate → main domain blank again');
+await p.goto(BASE + `/superadmin/shops/${B.id}/`);
+p.once('dialog', (d) => d.accept());
+await Promise.all([p.waitForNavigation(), p.click('button:has-text("Show on main website")')]);
+ok(await p.locator('.badge:has-text("On main website")').count() === 1, '"Show on main website" from the shop page');
+
 /* 3. Owner sets password & logs in */
 step('Shop admin onboarding');
 const adminA = await newCtx();

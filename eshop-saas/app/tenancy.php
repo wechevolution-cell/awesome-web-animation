@@ -17,7 +17,16 @@ function shop_by_host(string $host): ?array {
 function shop_primary_domain(int $shopId): ?string {
     return val('SELECT domain FROM shop_domains WHERE shop_id = ? ORDER BY is_primary DESC, id LIMIT 1', [$shopId]);
 }
+/** The shop whose storefront is served at the root of the main (platform) domain, if the Super Admin activated one. */
+function main_shop(): ?array {
+    $id = (int) setting('main_shop_id', '0');
+    if (!$id) return null;
+    $s = shop_by_id($id);
+    return ($s && !$s['deleted_at']) ? $s : null;
+}
+function is_main_shop(array $shop): bool { return (int) setting('main_shop_id', '0') === (int) $shop['id']; }
 function shop_public_url(array $shop): string {
+    if (is_main_shop($shop)) return '/';
     $d = shop_primary_domain((int) $shop['id']);
     if ($d && !str_ends_with($d, '.test') && $d !== host_no_port()) return (is_https() || setting('force_https') === '1' ? 'https://' : 'http://') . $d . '/';
     return '/s/' . $shop['slug'] . '/';

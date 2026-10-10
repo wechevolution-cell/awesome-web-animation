@@ -4,7 +4,9 @@
   <p class="muted"><?= e($primary ?: '/s/' . $shop['slug'] . '/') ?> · <?= e($plan['name'] ?? '—') ?> · <?= e(template_get($shop['template_key'])['name']) ?> · created <?= e(fmt_date($shop['created_at'])) ?></p></div>
   <div class="page-actions">
     <?php if (!$deleted): ?>
-    <a class="btn btn-ghost btn-sm" href="/s/<?= e($shop['slug']) ?>/" target="_blank" rel="noopener"><?= icon('external', 16) ?> Storefront</a>
+    <a class="btn btn-ghost btn-sm" href="<?= e(shop_public_url($shop)) ?>" target="_blank" rel="noopener"><?= icon('external', 16) ?> Storefront</a>
+    <?php if (is_main_shop($shop)): ?><span class="badge badge-ok">On main website</span>
+    <?php else: ?><form method="post" action="/superadmin/main-site/"><?= csrf_field() ?><input type="hidden" name="act" value="activate"><input type="hidden" name="shop_id" value="<?= $sid ?>"><input type="hidden" name="return" value="/superadmin/shops/<?= $sid ?>/"><button class="btn btn-sm btn-ghost" data-confirm="Show this shop's storefront at the root of the main domain?"><?= icon('home', 16) ?> Show on main website</button></form><?php endif ?>
     <form method="post" action="/superadmin/impersonate/<?= $sid ?>/"><?= csrf_field() ?><button class="btn btn-sm"><?= icon('eye', 16) ?> Login as Shop Admin</button></form>
     <?php endif ?>
   </div>

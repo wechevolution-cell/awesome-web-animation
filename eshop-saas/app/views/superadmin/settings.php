@@ -2,11 +2,9 @@
 <div class="page-head"><div><h1>Platform settings</h1></div></div>
 <form method="post" class="edit-grid"><?= csrf_field() ?>
   <div class="edit-main">
-    <section class="card"><h2 class="card-h">Brand & public site</h2>
-      <div class="row2"><?= f_text('platform_name', 'Platform name', $s('platform_name')) ?><?= f_text('company_name', 'Company legal name', $s('company_name')) ?></div>
-      <?= f_text('hero_title', 'Homepage headline', $s('hero_title')) ?><?= f_textarea('hero_subtitle', 'Homepage subtitle', $s('hero_subtitle'), ['rows' => 2]) ?>
-      <div class="row3"><?= f_text('contact_email', 'Public contact email', $s('contact_email'), ['type' => 'email']) ?><?= f_text('contact_phone', 'Public phone', $s('contact_phone')) ?><?= f_text('company_address', 'Address', $s('company_address')) ?></div>
-      <div class="row2"><?= f_text('ga4_id', 'GA4 ID (platform site)', $s('ga4_id'), ['placeholder' => 'G-XXXXXXX']) ?><?= f_text('gsc_verification', 'Search Console verification', $s('gsc_verification')) ?></div>
+    <section class="card"><h2 class="card-h">Platform</h2>
+      <div class="row3"><?= f_text('platform_name', 'Platform name (back office)', $s('platform_name')) ?><?= f_text('company_name', 'Company legal name', $s('company_name')) ?><?= f_select('default_locale', 'Language of the blank main page', ['el' => 'Ελληνικά', 'en' => 'English'], $s('default_locale', 'el')) ?></div>
+      <p class="f-help">What visitors see on the main domain is chosen in <a href="/superadmin/#main-site">Overview → Main website</a>.</p>
     </section>
     <section class="card"><h2 class="card-h">Domains & security</h2>
       <div class="row2"><?= f_text('canonical_host', 'Platform canonical host', $s('canonical_host'), ['placeholder' => 'yourplatform.gr', 'help' => 'www.<em>host</em> is 301-redirected to it (non-www enforcement).']) ?><?= f_text('platform_hosts', 'Other platform hosts (comma separated)', $s('platform_hosts')) ?></div>

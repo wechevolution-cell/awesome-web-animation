@@ -30,6 +30,7 @@ function superadmin_dispatch(string $path): void {
         ['ANY', '/superadmin/backups/', static fn() => sa_backups()],
         ['ANY', '/superadmin/settings/', static fn() => sa_settings()],
         ['ANY', '/superadmin/messages/', static fn() => sa_messages()],
+        ['POST', '/superadmin/main-site/', static fn() => sa_main_site()],
         ['POST', '/superadmin/cron/', static function () { $r = cron_run(20.0); flash('ok', 'Cron ran: ' . $r['subscriptions']['checked'] . ' shops checked, ' . $r['subscriptions']['transitions'] . ' status changes, ' . $r['imports'] . ' imports advanced.'); back('/superadmin/'); }],
     ];
     if (!dispatch($routes, $path)) abort(404);
@@ -65,7 +66,10 @@ function sa_dashboard(): never {
         'cron' => setting('cron_last_run'), 'backup' => backups_list()[0]['time'] ?? null,
         'writable' => is_writable(DATA) && is_writable(UPLOADS), 'php' => PHP_VERSION, 'gd_webp' => function_exists('imagewebp'), 'zip' => class_exists('ZipArchive'),
     ];
-    sa_render('dashboard', compact('stats', 'expiring', 'notifs', 'byPlan', 'health'), 'Platform overview');
+    $main = main_shop();
+    $mainShops = rows("SELECT id, name, slug, status, template_key FROM shops WHERE deleted_at IS NULL ORDER BY is_demo, name");
+    $templates = rows("SELECT * FROM templates WHERE status = 'active' ORDER BY position");
+    sa_render('dashboard', compact('stats', 'expiring', 'notifs', 'byPlan', 'health', 'main', 'mainShops', 'templates'), 'Platform overview');
 }
 
 function sa_shops(): never {
@@ -314,8 +318,9 @@ function sa_backups(): never {
 }
 function sa_settings(): never {
     if (is_post()) handle(static function () {
-        foreach (['platform_name' => 80, 'company_name' => 160, 'company_address' => 255, 'contact_phone' => 40, 'hero_title' => 200, 'hero_subtitle' => 400] as $k => $max) setting_set($k, clean_text(post($k), $max));
-        foreach (['notify_email', 'mail_from', 'contact_email'] as $k) { $v = mb_strtolower(clean_text(post($k), 190)); if ($v !== '' && !valid_email($v)) throw new ValidationError([$k => 'Invalid email.']); setting_set($k, $v); }
+        foreach (['platform_name' => 80, 'company_name' => 160] as $k => $max) setting_set($k, clean_text(post($k), $max));
+        setting_set('default_locale', post('default_locale') === 'en' ? 'en' : 'el');
+        foreach (['notify_email', 'mail_from'] as $k) { $v = mb_strtolower(clean_text(post($k), 190)); if ($v !== '' && !valid_email($v)) throw new ValidationError([$k => 'Invalid email.']); setting_set($k, $v); }
         setting_set('expiry_warning_days', implode(',', array_filter(array_map('intval', explode(',', (string) post('expiry_warning_days'))), static fn($n) => $n > 0 && $n < 90)) ?: '10,3,1');
         setting_set('expiring_window_days', (string) max(1, min(60, (int) post('expiring_window_days', 10))));
         setting_set('lock_grace_days', (string) max(0, min(60, (int) post('lock_grace_days'))));
@@ -324,8 +329,6 @@ function sa_settings(): never {
         setting_set('canonical_host', domain_normalize((string) post('canonical_host')));
         setting_set('platform_hosts', implode(',', array_filter(array_map('domain_normalize', explode(',', (string) post('platform_hosts'))))));
         setting_set('server_ip', filter_var(post('server_ip'), FILTER_VALIDATE_IP) ? post('server_ip') : '');
-        setting_set('ga4_id', preg_match('/^G-[A-Z0-9]{4,15}$/', (string) post('ga4_id')) ? post('ga4_id') : '');
-        setting_set('gsc_verification', preg_replace('/[^A-Za-z0-9_\-]/', '', (string) post('gsc_verification')));
         if (post('regen_cron')) setting_set('cron_token', bin2hex(random_bytes(16)));
         audit('platform.settings_updated', 'platform');
         flash('ok', 'Platform settings saved.');
@@ -339,4 +342,27 @@ function sa_messages(): never {
         if (post('act') === 'delete') q('DELETE FROM contact_messages WHERE id = ?', [$m['id']]); else update('contact_messages', ['read_at' => now()], 'id = ?', [$m['id']]);
     }, '/superadmin/messages/');
     sa_render('messages', ['messages' => rows('SELECT * FROM contact_messages WHERE shop_id = 0 ORDER BY id DESC LIMIT 100')], 'Platform messages');
+}
+
+/** Activate / deactivate the storefront served at the root of the main domain. */
+function sa_main_site(): never {
+    $back = (string) (post('return') ?: '/superadmin/#main-site');
+    if (!str_starts_with($back, '/superadmin/')) $back = '/superadmin/';
+    handle(static function () {
+        if (post('act') === 'deactivate') {
+            $old = (int) setting('main_shop_id', '0');
+            setting_set('main_shop_id', '0');
+            audit('main_site.deactivated', 'shop', $old ?: null, $old ?: null);
+            flash('ok', 'The main website is blank again. The shop itself is untouched.');
+            return;
+        }
+        $shop = shop_by_id((int) post('shop_id'));
+        if (!$shop || $shop['deleted_at']) throw new UserError('Choose a shop.');
+        $tpl = (string) post('template_key');
+        if ($tpl !== '' && $tpl !== $shop['template_key']) shop_change_template((int) $shop['id'], $tpl);
+        setting_set('main_shop_id', (string) $shop['id']);
+        audit('main_site.activated', 'shop', (int) $shop['id'], (int) $shop['id'], 'success', ['template' => $tpl ?: $shop['template_key']]);
+        $open = shop_is_open($shop);
+        flash($open ? 'ok' : 'warn', 'Main website now shows “' . $shop['name'] . '” with the ' . template_get($tpl ?: $shop['template_key'])['name'] . ' template.' . ($open ? '' : ' The shop is ' . $shop['status'] . ', so visitors see the lock page until you activate/renew it.'));
+    }, $back);
 }
