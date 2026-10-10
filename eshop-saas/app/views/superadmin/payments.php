@@ -1,0 +1,6 @@
+<div class="page-head"><div><h1>Payments</h1><p class="muted">V1 records manual payments. Providers below are the abstraction layer for Stripe / Viva Wallet (Provider → Payment → Subscription → Shop).</p></div></div>
+<section class="card"><h2 class="card-h">Providers</h2><ul class="feat-list"><?php foreach ($providers as $p): ?><li class="<?= $p['enabled'] ? 'ok' : 'off' ?>"><?= icon($p['enabled'] ? 'check' : 'close', 14) ?> <?= e($p['name']) ?> <code class="small"><?= e($p['key']) ?></code></li><?php endforeach ?></ul></section>
+<div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Shop</th><th>Provider</th><th>Purpose</th><th>Amount</th><th>Status</th><th>Reference</th></tr></thead><tbody>
+<?php foreach ($payments as $p): ?><tr><td class="small"><?= e(fmt_date($p['created_at'], true)) ?></td><td><a href="/superadmin/shops/<?= (int) $p['shop_id'] ?>/"><?= e($p['shop_name']) ?></a></td><td><?= e($p['provider_key']) ?></td><td><?= e($p['purpose']) ?></td><td><?= e(money((int) $p['amount_cents'])) ?></td><td><span class="badge badge-<?= e($p['status']) ?>"><?= e($p['status']) ?></span></td><td><?= e($p['reference']) ?></td></tr><?php endforeach ?>
+<?php if (!$payments): ?><tr><td colspan="7" class="empty-cell">No payments recorded.</td></tr><?php endif ?>
+</tbody></table></div><?= pager_html($pg, '/superadmin/payments/') ?>

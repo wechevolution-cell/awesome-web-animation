@@ -1,0 +1,25 @@
+/* Volt — Neo-Brutalist Sports: heavy borders, hard shadows, condensed caps, electric lime */
+.tpl-volt body{font-weight:500}
+.tpl-volt h1,.tpl-volt h2,.tpl-volt h3,.tpl-volt .brand-text{font-family:var(--f-heading);text-transform:uppercase;letter-spacing:-.01em;font-weight:900}
+.tpl-volt .hdr{background:var(--c-secondary);border-bottom:3px solid var(--c-text);backdrop-filter:none}
+.tpl-volt .brand-text{font-size:1.7rem;font-style:italic}
+.tpl-volt .nav a{text-transform:uppercase;font-weight:800;font-size:.88rem}
+.tpl-volt .btn{border:3px solid var(--c-text);border-radius:0;box-shadow:4px 4px 0 var(--c-text);text-transform:uppercase;font-weight:900;letter-spacing:.02em}
+.tpl-volt .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--c-text)}
+.tpl-volt .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--c-text)}
+.tpl-volt .btn-ghost{--bg:#fff;--fg:var(--c-text)}
+.tpl-volt .brutal h1{font-size:clamp(3rem,1.5rem + 6vw,7rem);line-height:.88;font-style:italic}
+.tpl-volt .brutal-visual img,.tpl-volt .brutal-visual .hero-ph{border:3px solid var(--c-text);box-shadow:10px 10px 0 var(--c-accent)}
+.tpl-volt .eyebrow{background:var(--c-text);color:var(--c-secondary);display:inline-block;padding:.25rem .5rem}
+.tpl-volt .pcard{border:3px solid var(--c-text);background:#fff;box-shadow:6px 6px 0 var(--c-text);padding:.6rem;transition:transform .15s,box-shadow .15s}
+.tpl-volt .pcard:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--c-text)}
+.tpl-volt .pcard-media{border-radius:0;border:2px solid var(--c-text)}
+.tpl-volt .pcard-title{text-transform:uppercase;font-weight:800;font-size:.95rem}
+.tpl-volt .badge-sale{background:var(--c-accent);border:2px solid var(--c-text);border-radius:0}
+.tpl-volt .price-now{background:var(--c-secondary);padding:0 .3rem}
+.tpl-volt input,.tpl-volt select,.tpl-volt textarea{border:2px solid var(--c-text);border-radius:0}
+.tpl-volt .cat-media{border:3px solid var(--c-text);border-radius:0;box-shadow:5px 5px 0 var(--c-text)}
+.tpl-volt .cat-name{text-transform:uppercase;font-weight:900}
+.tpl-volt .promo{border:3px solid var(--c-text);border-radius:0;background:var(--c-accent);color:#fff;box-shadow:8px 8px 0 var(--c-text)}
+.tpl-volt .summary,.tpl-volt .co-step,.tpl-volt .news{border:3px solid var(--c-text);border-radius:0;box-shadow:6px 6px 0 var(--c-text);background:#fff}
+.tpl-volt .filters{border:3px solid var(--c-text);padding:1rem;background:#fff;align-self:start}

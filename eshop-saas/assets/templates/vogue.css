@@ -1,0 +1,20 @@
+/* Vogue — Fashion Magazine: oversized type, asymmetric editorial rhythm, red ink */
+.tpl-vogue .hdr{border-bottom:2px solid var(--c-text);background:var(--c-background)}
+.tpl-vogue .brand-text{font-family:var(--f-heading);font-weight:400;font-style:italic;font-size:2rem;letter-spacing:-.03em}
+.tpl-vogue h1,.tpl-vogue h2{font-weight:400;letter-spacing:-.03em}
+.tpl-vogue .display{font-style:italic}
+.tpl-vogue .display::first-letter{color:var(--c-accent)}
+.tpl-vogue .eyebrow{color:var(--c-text);border-top:2px solid var(--c-text);padding-top:.5rem;display:inline-block}
+.tpl-vogue .btn{border-radius:0;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}
+.tpl-vogue .sec-head h2{font-size:clamp(2rem,1.2rem + 3vw,3.6rem);font-style:italic}
+.tpl-vogue .pgrid{gap:2.5rem 1.5rem}
+@media (min-width:760px){.tpl-vogue .sec-products .pgrid>.pcard:nth-child(3n+2){margin-top:3rem}}
+.tpl-vogue .pcard-media{aspect-ratio:2/3;border-radius:0}
+.tpl-vogue .pcard-title{font-family:var(--f-heading);font-size:1.15rem;font-weight:400}
+.tpl-vogue .pcard-brand{color:var(--c-accent)}
+.tpl-vogue .pcard-actions .btn{background:transparent;color:var(--c-text);border:0;border-bottom:1px solid var(--c-text);border-radius:0;justify-content:flex-start;padding-inline:0;min-height:32px}
+.tpl-vogue .cat-grid{grid-template-columns:repeat(2,1fr)}
+@media (min-width:900px){.tpl-vogue .cat-grid{grid-template-columns:2fr 1fr 1fr}.tpl-vogue .cat-card:first-child{grid-row:span 2}}
+.tpl-vogue .cat-name{font-family:var(--f-heading);font-style:italic;font-weight:400;font-size:1.5rem}
+.tpl-vogue .promo{background:var(--c-accent);border-radius:0}
+.tpl-vogue .pdp-title{font-style:italic;font-weight:400;font-size:clamp(2rem,1.4rem + 2.4vw,3.6rem)}

@@ -1,0 +1,26 @@
+/* Bazaar — Marketplace: dense, search-first, compact cards, strong price emphasis */
+.tpl-bazaar body{font-size:.94rem;background:var(--c-background)}
+.tpl-bazaar .hdr{background:var(--c-primary);border:0}
+.tpl-bazaar .hdr-top .brand-text,.tpl-bazaar .hdr-top .act{color:#fff}
+.tpl-bazaar .hdr-top .search input{background:#fff;border:0;min-height:46px}
+.tpl-bazaar .hdr--search .hdr-nav{background:#fff}
+.tpl-bazaar .count{background:#fff;color:var(--c-primary)}
+.tpl-bazaar .brand-text{font-weight:900;letter-spacing:-.03em}
+.tpl-bazaar main{padding-bottom:1rem}
+.tpl-bazaar .banner-main{background:linear-gradient(120deg,var(--c-primary),#ff8a3d);color:#fff}
+.tpl-bazaar .banner-main .hero-sub,.tpl-bazaar .banner-main .eyebrow{color:rgba(255,255,255,.9)}
+.tpl-bazaar .banner-main .btn{--bg:#fff;--fg:var(--c-primary)}
+.tpl-bazaar .sec{padding:1.75rem 0}
+.tpl-bazaar .sec>.wrap{background:var(--c-surface);border-radius:var(--radius);padding:1.25rem}
+.tpl-bazaar .pgrid{gap:.75rem}
+.tpl-bazaar .pcard{background:var(--c-surface);border:1px solid #e6e8ec;border-radius:var(--radius);padding:.6rem}
+.tpl-bazaar .pcard-media{background:#fff}.tpl-bazaar .pcard-media img{object-fit:contain}
+.tpl-bazaar .pcard-title{font-size:.86rem;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.tpl-bazaar .price-now{color:var(--c-primary);font-size:1.12rem;font-weight:800}
+.tpl-bazaar .badge-sale{background:#e53935}
+.tpl-bazaar .pcard-add{background:var(--c-accent);border-color:var(--c-accent)}
+.tpl-bazaar .filters{background:var(--c-surface);border-radius:var(--radius);padding:1rem;align-self:start;border:1px solid #e6e8ec}
+.tpl-bazaar .cat-grid{grid-template-columns:repeat(3,1fr)}
+@media (min-width:900px){.tpl-bazaar .cat-grid{grid-template-columns:repeat(6,1fr)}}
+.tpl-bazaar .cat-media{border-radius:50%;aspect-ratio:1}
+.tpl-bazaar .cat-card a{text-align:center}

@@ -1,0 +1,21 @@
+/* Fresh — Food & Grocery: bright, friendly, chunky tap targets, quick-add everywhere */
+.tpl-fresh body{background:#fff}
+.tpl-fresh .hdr{background:#fff}
+.tpl-fresh .brand-text{color:var(--c-primary);font-weight:900;font-size:1.5rem}
+.tpl-fresh .brand-text::before{content:"● ";color:var(--c-accent)}
+.tpl-fresh h1,.tpl-fresh h2{font-weight:800}
+.tpl-fresh .btn{border-radius:999px;font-weight:700}
+.tpl-fresh .banner-main{background:var(--c-secondary)}
+.tpl-fresh .banner-main h1{color:var(--c-primary)}
+.tpl-fresh .banner-mini{background:#fff7e3}
+.tpl-fresh .chips a{background:var(--c-secondary);border:0;font-weight:600;color:var(--c-primary)}
+.tpl-fresh .pcard{border:1px solid #e3efe6;border-radius:var(--radius);padding:.75rem;background:#fff}
+.tpl-fresh .pcard-media{background:var(--c-surface);border-radius:12px}
+.tpl-fresh .pcard-title{font-weight:700}
+.tpl-fresh .price-now{color:var(--c-primary);font-size:1.15rem}
+.tpl-fresh .pcard-add{border-radius:999px;background:var(--c-accent);border-color:var(--c-accent);color:#13281b}
+.tpl-fresh .badge-sale{background:#e8452c}
+.tpl-fresh .cat-media{border-radius:24px;background:var(--c-secondary)}
+.tpl-fresh .cat-card a{text-align:center}
+.tpl-fresh .benefit-ic{background:var(--c-secondary);color:var(--c-primary);border-radius:50%}
+.tpl-fresh .promo{background:var(--c-primary);border-radius:24px}

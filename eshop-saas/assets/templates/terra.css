@@ -1,0 +1,19 @@
+/* Terra — Organic Lifestyle: earthy, soft round shapes, warm serif headlines */
+.tpl-terra h1,.tpl-terra h2{font-weight:500}
+.tpl-terra .brand-text{font-family:var(--f-heading);font-weight:600;font-size:1.5rem}
+.tpl-terra .brand-text::before{content:"❧ ";color:var(--c-accent)}
+.tpl-terra .hdr{background:var(--c-background)}
+.tpl-terra .btn{border-radius:999px}
+.tpl-terra .split{background:var(--c-secondary);border-radius:0 0 48px 48px;padding-inline:clamp(1rem,4vw,3.5rem);margin-top:0}
+.tpl-terra .split-fig img{border-radius:200px 200px 24px 24px;aspect-ratio:4/5}
+.tpl-terra .split h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,4.2rem)}
+.tpl-terra .pcard-media{border-radius:28px;background:var(--c-surface)}
+.tpl-terra .pcard-title{font-family:var(--f-heading);font-size:1.08rem;font-weight:500}
+.tpl-terra .pcard-add{border-radius:999px}
+.tpl-terra .cat-media{border-radius:50%}
+.tpl-terra .cat-card a{text-align:center}
+.tpl-terra .benefit-ic{border-radius:50%;background:var(--c-secondary);color:var(--c-primary)}
+.tpl-terra .promo{border-radius:28px;background:var(--c-accent)}
+.tpl-terra .news{border-radius:28px;background:var(--c-secondary)}
+.tpl-terra .chips a{background:var(--c-surface);border-color:transparent}
+.tpl-terra .summary,.tpl-terra .co-step,.tpl-terra .radio-card,.tpl-terra input,.tpl-terra select,.tpl-terra textarea{border-radius:16px}

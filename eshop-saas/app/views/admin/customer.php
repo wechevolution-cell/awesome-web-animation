@@ -1,0 +1,6 @@
+<?php $a = jdec($c['address']); ?>
+<div class="page-head"><div><a class="back" href="/admin/customers/">← Customers</a><h1><?= e($c['name'] ?: $c['email']) ?></h1></div></div>
+<div class="split-2">
+  <section class="card"><h2 class="card-h">Profile</h2><dl class="dl"><dt>Email</dt><dd><?= e($c['email']) ?></dd><dt>Phone</dt><dd><?= e($c['phone'] ?: '—') ?></dd><dt>Account</dt><dd><?= $c['password_hash'] ? 'Registered' : 'Guest checkout' ?></dd><dt>Saved address</dt><dd><?= e(trim(($a['address'] ?? '') . ', ' . ($a['postcode'] ?? '') . ' ' . ($a['city'] ?? ''), ', ') ?: '—') ?></dd><dt>Customer since</dt><dd><?= e(fmt_date($c['created_at'])) ?></dd></dl></section>
+  <section class="card"><h2 class="card-h">Order history</h2><table class="table"><thead><tr><th>#</th><th>Date</th><th>Status</th><th>Total</th></tr></thead><tbody><?php foreach ($orders as $o): ?><tr><td><a href="/admin/orders/<?= (int) $o['id'] ?>/">#<?= e($o['number']) ?></a></td><td><?= e(fmt_date($o['created_at'])) ?></td><td><?= e(ORDER_STATUSES[$o['status']] ?? '') ?></td><td><?= e(money((int) $o['total_cents'])) ?></td></tr><?php endforeach ?><?php if (!$orders): ?><tr><td colspan="4" class="muted">No orders.</td></tr><?php endif ?></tbody></table></section>
+</div>

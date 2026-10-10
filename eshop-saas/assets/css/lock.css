@@ -1,0 +1,11 @@
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;display:grid;place-items:center;padding:1.5rem}
+.lock{max-width:560px;text-align:center}
+.lock h1{font-size:clamp(1.5rem,1.1rem + 2vw,2.2rem);line-height:1.2;margin:1.5rem 0 .75rem;text-wrap:balance}
+.lock p{color:var(--mu);margin:0 0 .5rem}.lock-alt{font-size:.88rem;margin-top:1.5rem!important}
+.lock-name{font-weight:800;font-size:1.3rem;letter-spacing:-.02em;color:var(--fg)!important}
+.lock-logo{margin:0 auto;max-height:60px;width:auto}
+.lock-mark{display:flex;gap:8px;justify-content:center;margin-bottom:1.5rem}
+.lock-mark span{width:10px;height:10px;border-radius:50%;background:var(--ac);animation:b 1.4s infinite ease-in-out}
+.lock-mark span:nth-child(2){animation-delay:.2s}.lock-mark span:nth-child(3){animation-delay:.4s}
+@keyframes b{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.lock-mark span{animation:none}}

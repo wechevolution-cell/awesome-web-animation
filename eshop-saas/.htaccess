@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------
+# SaaS E-Shop Platform — Apache / LiteSpeed configuration
+# ---------------------------------------------------------------
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Optional: force HTTPS at server level (the app can also do it: Super Admin > Settings).
+  # RewriteCond %{HTTPS} !=on
+  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Never serve private folders or dotfiles.
+  RewriteRule ^(app|data|tests)(/|$) - [F,L]
+  RewriteRule (^|/)\. - [F,L]
+  RewriteRule ^uploads/.*\.(php\d?|phtml|phar|pht|cgi|pl|py|sh)$ - [F,L,NC]
+
+  # Real files (assets, uploads) are served directly.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Everything else goes to the front controller.
+  RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+<FilesMatch "(\.(sqlite|sqlite3|db|log|ini|lock|md|zip|sql|bak)|^cron\.php)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  <FilesMatch "\.(css|js|svg|webp|avif|jpg|jpeg|png|gif|ico|woff2)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml text/xml text/plain
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/avif "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>

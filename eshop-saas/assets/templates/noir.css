@@ -1,0 +1,23 @@
+/* Noir — Dark Premium: cinematic full-bleed, deep blacks, gold hairlines */
+.tpl-noir body{background:var(--c-background)}
+.tpl-noir .hdr{background:color-mix(in srgb,var(--c-background) 70%,transparent);border-bottom-color:rgba(214,180,106,.18)}
+.tpl-noir.tpl-noir body.is-home .hdr{position:absolute;left:0;right:0;background:linear-gradient(rgba(0,0,0,.55),transparent);border:0;backdrop-filter:none}
+.tpl-noir body.is-home .hdr a,.tpl-noir body.is-home .hdr .act,.tpl-noir body.is-home .hdr .menu-word{color:#f3f1ec}
+.tpl-noir .brand-text{font-weight:400;letter-spacing:.35em;text-transform:uppercase;font-size:1.05rem}
+.tpl-noir h1,.tpl-noir h2{font-weight:400;letter-spacing:.01em}
+.tpl-noir .hero--fullbleed h1{font-style:italic}
+.tpl-noir .eyebrow{color:var(--c-accent);letter-spacing:.35em}
+.tpl-noir .btn{border-radius:0;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem}
+.tpl-noir .btn-ghost{border-color:rgba(214,180,106,.5);color:var(--c-accent)}
+.tpl-noir input,.tpl-noir select,.tpl-noir textarea{background:var(--c-surface);border-color:rgba(255,255,255,.12)}
+.tpl-noir .pcard-media{background:#1d1d20;aspect-ratio:4/5}
+.tpl-noir .pcard-body{position:absolute;left:0;right:0;bottom:3.1rem;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
+.tpl-noir .pcard-body a{pointer-events:auto;color:#f3f1ec}
+.tpl-noir .pcard-title{font-family:var(--f-heading);font-weight:400;font-size:1.1rem}
+.tpl-noir .price-now{color:var(--c-accent)}
+.tpl-noir .pcard-actions{padding-top:.6rem}
+.tpl-noir .sec-head{border-bottom:1px solid rgba(214,180,106,.25);padding-bottom:1rem}
+.tpl-noir .summary,.tpl-noir .contact-card,.tpl-noir .news,.tpl-noir .pdp-assure{background:var(--c-surface)}
+.tpl-noir .promo{background:linear-gradient(120deg,#1b1b1d,#2a2418);color:var(--c-text);border:1px solid rgba(214,180,106,.25)}
+.tpl-noir .promo .btn{--bg:var(--c-accent);--fg:#0e0e10}
+.tpl-noir .cat-media{background:#1d1d20}

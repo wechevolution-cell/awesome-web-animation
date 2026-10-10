@@ -1,0 +1,5 @@
+<div class="page-head"><div><h1>Pages</h1><p class="muted">Static pages: about, contact, legal, shipping, returns…</p></div><div class="page-actions"><a class="btn" href="/admin/pages/new/"><?= icon('plus', 16) ?> New page</a></div></div>
+<div class="table-wrap"><table class="table"><thead><tr><th>Title</th><th>URL</th><th>Status</th><th>Updated</th><th></th></tr></thead><tbody>
+<?php foreach ($pages as $p): $tmpl = str_contains((string) $p['content'], 'verify before going live') || str_contains((string) $p['content'], 'ελέγξτε πριν τη δημοσίευση'); ?>
+<tr><td><a class="strong" href="/admin/pages/<?= (int) $p['id'] ?>/"><?= e($p['title']) ?></a><?php if ($p['kind'] === 'contact'): ?> <span class="badge badge-muted">Contact form</span><?php endif ?></td><td class="mono small">/<?= e($p['slug']) ?>/</td><td><?= $p['status'] === 'published' ? '<span class="badge badge-ok">Published</span>' : '<span class="badge badge-muted">Draft</span>' ?></td><td class="small"><?= e(fmt_date($p['updated_at'] ?: $p['created_at'])) ?></td><td><?php if ($tmpl): ?><span class="badge badge-warn">Template text</span><?php endif ?></td></tr>
+<?php endforeach ?></tbody></table></div>

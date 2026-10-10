@@ -1,0 +1,20 @@
+/* Pulse — Tech Store: bento, rounded panels, crisp technical type, spec-first cards */
+.tpl-pulse body{background:var(--c-background)}
+.tpl-pulse .hdr{background:rgba(255,255,255,.82)}
+.tpl-pulse .brand-text{font-weight:800;letter-spacing:-.04em}
+.tpl-pulse .brand-text::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:3px;background:linear-gradient(135deg,var(--c-primary),var(--c-accent));margin-right:.4em;vertical-align:.05em}
+.tpl-pulse h1,.tpl-pulse h2{font-weight:800;letter-spacing:-.035em}
+.tpl-pulse .bento-main{background:linear-gradient(160deg,#0b1020,#1b2a6b);color:#fff}
+.tpl-pulse .bento-main .hero-sub{color:rgba(255,255,255,.75)}
+.tpl-pulse .bento-main .eyebrow{color:var(--c-accent)}
+.tpl-pulse .bento-tile{background:var(--c-surface);box-shadow:0 1px 0 rgba(11,16,32,.06),0 12px 30px -18px rgba(11,16,32,.25)}
+.tpl-pulse .pcard{background:var(--c-surface);border-radius:var(--radius);padding:.75rem;box-shadow:0 1px 0 rgba(11,16,32,.05),0 10px 24px -18px rgba(11,16,32,.3);transition:transform .2s,box-shadow .2s}
+.tpl-pulse .pcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(59,91,253,.45)}
+.tpl-pulse .pcard-media{background:#eef1f8;border-radius:calc(var(--radius) - 4px)}
+.tpl-pulse .pcard-media img{object-fit:contain;padding:8%}
+.tpl-pulse .pcard-spec,.tpl-pulse .pcard-brand{font-family:var(--f-mono);font-size:.72rem}
+.tpl-pulse .price-now{font-size:1.1rem}
+.tpl-pulse .eyebrow{font-family:var(--f-mono);letter-spacing:.08em}
+.tpl-pulse .specs th{font-family:var(--f-mono);font-size:.8rem}
+.tpl-pulse .filters{background:var(--c-surface);border-radius:var(--radius);padding:1rem;align-self:start}
+.tpl-pulse .cat-media{background:#eef1f8}.tpl-pulse .cat-media img{object-fit:contain;padding:12%}

@@ -1,0 +1,24 @@
+/* Maison — Luxury Boutique: centered serif identity, cream paper, thin rules, uppercase micro-type */
+.tpl-maison h1,.tpl-maison h2,.tpl-maison h3{font-weight:400;letter-spacing:0}
+.tpl-maison .brand-text{font-weight:400;font-size:1.8rem;letter-spacing:.32em;text-transform:uppercase}
+.tpl-maison .hdr{background:var(--c-background);border-bottom-color:color-mix(in srgb,var(--c-text) 18%,transparent)}
+.tpl-maison .nav a{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:500}
+.tpl-maison .btn{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:500;padding-inline:1.8rem}
+.tpl-maison .btn:hover{box-shadow:none;background:var(--c-accent);border-color:var(--c-accent)}
+.tpl-maison .hero-grid h1{font-size:clamp(2.6rem,1.4rem + 4vw,5rem);font-style:italic;line-height:1.02}
+.tpl-maison .hero-fig img{filter:saturate(.9)}
+.tpl-maison .eyebrow{color:var(--c-accent);letter-spacing:.3em;font-weight:500}
+.tpl-maison .sec-head{flex-direction:column;align-items:center;text-align:center}
+.tpl-maison .sec-head h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.5rem);font-style:italic}
+.tpl-maison .pcard{text-align:center}
+.tpl-maison .pcard-media{aspect-ratio:3/4}
+.tpl-maison .pcard-title{font-family:var(--f-heading);font-size:1.08rem;font-weight:400}
+.tpl-maison .pcard .price{justify-content:center;font-size:.92rem;letter-spacing:.05em}
+.tpl-maison .pcard-actions{opacity:0;transition:opacity .25s}
+.tpl-maison .pcard:hover .pcard-actions,.tpl-maison .pcard:focus-within .pcard-actions{opacity:1}
+@media (hover:none){.tpl-maison .pcard-actions{opacity:1}}
+.tpl-maison .cat-name{font-family:var(--f-heading);font-weight:400;font-size:1.15rem;text-align:center}
+.tpl-maison .cat-count{text-align:center}
+.tpl-maison .cat-media img{aspect-ratio:3/4}
+.tpl-maison .benefits{text-align:center}.tpl-maison .benefit-ic{margin:auto;background:none;border:1px solid var(--c-accent)}
+.tpl-maison .pdp-title{font-weight:400;font-style:italic}

@@ -1,0 +1,20 @@
+/* Atelier — Architectural: hairline grid, generous whitespace, indexed navigation */
+.tpl-atelier body{font-size:.95rem;letter-spacing:.005em}
+.tpl-atelier .hdr{background:var(--c-background);border-bottom:1px solid var(--c-text)}
+.tpl-atelier .brand-text{font-weight:300;letter-spacing:.42em;text-transform:uppercase;font-size:1rem}
+.tpl-atelier h1,.tpl-atelier h2{font-weight:300;letter-spacing:-.02em}
+.tpl-atelier .arch h1{font-size:clamp(2rem,1.2rem + 3vw,3.8rem);line-height:1.05}
+.tpl-atelier .btn{border-radius:0;font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.74rem;background:transparent;color:var(--c-text);border-color:var(--c-text)}
+.tpl-atelier .btn:hover{background:var(--c-text);color:var(--c-background);box-shadow:none}
+.tpl-atelier .sec-head{border-top:1px solid var(--c-text);padding-top:1rem}
+.tpl-atelier .sec-head h2{font-size:1rem;text-transform:uppercase;letter-spacing:.3em;font-weight:400}
+.tpl-atelier .pgrid{gap:0;border-top:1px solid color-mix(in srgb,var(--c-text) 15%,transparent);border-left:1px solid color-mix(in srgb,var(--c-text) 15%,transparent)}
+.tpl-atelier .pcard{border-right:1px solid color-mix(in srgb,var(--c-text) 15%,transparent);border-bottom:1px solid color-mix(in srgb,var(--c-text) 15%,transparent);padding:1.25rem}
+.tpl-atelier .pcard-media{border-radius:0;background:transparent}
+.tpl-atelier .pcard-media img{object-fit:contain}
+.tpl-atelier .pcard-title{font-weight:400}
+.tpl-atelier .pcard-brand{font-family:var(--f-mono)}
+.tpl-atelier .cat-media{border-radius:0}
+.tpl-atelier .cat-name{font-weight:400;text-transform:uppercase;letter-spacing:.15em;font-size:.82rem}
+.tpl-atelier .promo{border-radius:0;background:var(--c-surface);color:var(--c-text)}
+.tpl-atelier .promo .btn{--bg:transparent;--fg:var(--c-text)}

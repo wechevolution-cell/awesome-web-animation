@@ -1,0 +1,19 @@
+/* Aurora — Swiss Minimal Store: strict grid, hairlines, grotesk, restrained colour */
+.tpl-aurora body{font-size:.98rem}
+.tpl-aurora h1,.tpl-aurora h2{font-weight:600;letter-spacing:-.03em}
+.tpl-aurora .hdr{background:var(--c-background);backdrop-filter:none}
+.tpl-aurora .brand-text{font-weight:700;text-transform:lowercase;letter-spacing:-.04em;font-size:1.45rem}
+.tpl-aurora .brand-text::after{content:".";color:var(--c-accent)}
+.tpl-aurora .nav a{font-size:.88rem}
+.tpl-aurora .split{border-bottom:1px solid color-mix(in srgb,var(--c-text) 12%,transparent)}
+.tpl-aurora .split h1{font-size:clamp(2.2rem,1.4rem + 3.4vw,4.4rem);font-weight:600;letter-spacing:-.045em;line-height:1}
+.tpl-aurora .split-fig img{border-radius:0}
+.tpl-aurora .eyebrow{color:var(--c-muted);font-weight:500;letter-spacing:.2em}
+.tpl-aurora .pcard-media{border-radius:0;background:var(--c-surface)}
+.tpl-aurora .pcard-title{font-weight:500}
+.tpl-aurora .pcard-add{background:transparent;color:var(--c-text);border-color:color-mix(in srgb,var(--c-text) 20%,transparent)}
+.tpl-aurora .pcard-add:hover{background:var(--c-primary);color:var(--c-button-text)}
+.tpl-aurora .sec-head{border-bottom:1px solid var(--c-text);padding-bottom:.75rem}
+.tpl-aurora .sec-head h2{font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em}
+.tpl-aurora .cat-media{border-radius:0}
+.tpl-aurora .promo{border-radius:0}
